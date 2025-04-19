@@ -1,11 +1,11 @@
 {% load static %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% block title %}Admin Dashboard{% endblock %}</title>
-  
+<title>
+    {% block title %}WudMet{% endblock %}
+</title>
 <!-- Include External Dependencies -->
 {% include 'components/external_dependencies.html' %}
-  
 <!-- Main CSS -->
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% block extra_css %}{% endblock %}

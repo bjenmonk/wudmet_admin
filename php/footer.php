@@ -12,7 +12,7 @@
             </div>
             <div class="social-icons ms-md-3">
               <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="https://x.com/wudmet" title="Twitter"><i class="fab fa-twitter"></i></a>
               <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
               <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>

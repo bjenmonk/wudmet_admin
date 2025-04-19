@@ -2,7 +2,7 @@
 <nav id="sidebar" class="sidebar">
   <div class="position-sticky pt-3">
     <div class="text-center mb-4">
-      <h5 class="py-2">Admin Dashboard</h5>
+      <h5 class="py-2">WudMet</h5>
     </div>
     <ul class="nav flex-column">
       <li class="nav-item">
