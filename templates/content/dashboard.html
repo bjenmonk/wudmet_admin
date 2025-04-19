@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Admin{% endblock %}
+
+{% block content %}
+<!-- Dashboard Content -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2">Dashboard</h1>
+  <div>
+    <button class="btn btn-sm btn-outline-secondary me-2">
+      <i class="fas fa-download"></i> Export
+    </button>
+    <button class="btn btn-sm btn-primary">
+      <i class="fas fa-plus"></i> Add New
+    </button>
+  </div>
+</div>
+
+<!-- Stats Row -->
+<div class="row">
+  <div class="col-md-6 col-xl-3 mb-4">
+    <div class="card stat-card stat-card-primary h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="text-muted fw-normal mt-0">Total Revenue</h6>
+            <h3>${{ dashboard_stats.revenue|floatformat:2 }}</h3>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+        </div>
+        <p class="mb-0 text-muted">
+          <span class="text-success me-2"><i class="fas fa-arrow-up"></i> {{ dashboard_stats.revenue_change }}%</span>
+          <span class="text-nowrap">Since last month</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3 mb-4">
+    <div class="card stat-card stat-card-success h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="text-muted fw-normal mt-0">Total Orders</h6>
+            <h3>{{ dashboard_stats.orders }}</h3>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+        </div>
+        <p class="mb-0 text-muted">
+          <span class="{% if dashboard_stats.orders_change < 0 %}text-danger{% else %}text-success{% endif %} me-2">
+            <i class="fas fa-arrow-{% if dashboard_stats.orders_change < 0 %}down{% else %}up{% endif %}"></i> 
+            {{ dashboard_stats.orders_change|abs }}%
+          </span>
+          <span class="text-nowrap">Since last month</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3 mb-4">
+    <div class="card stat-card stat-card-info h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="text-muted fw-normal mt-0">Total Customers</h6>
+            <h3>{{ dashboard_stats.customers }}</h3>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+        </div>
+        <p class="mb-0 text-muted">
+          <span class="text-success me-2"><i class="fas fa-arrow-up"></i> {{ dashboard_stats.customers_change }}%</span>
+          <span class="text-nowrap">Since last month</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3 mb-4">
+    <div class="card stat-card stat-card-warning h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="text-muted fw-normal mt-0">Total Products</h6>
+            <h3>{{ dashboard_stats.products }}</h3>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-box"></i>
+          </div>
+        </div>
+        <p class="mb-0 text-muted">
+          <span class="text-success me-2"><i class="fas fa-arrow-up"></i> {{ dashboard_stats.products_change }}%</span>
+          <span class="text-nowrap">Since last month</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Charts Row -->
+<div class="row">
+  <div class="col-lg-8 mb-4">
+    <div class="card h-100">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Revenue Overview</h5>
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            This Year
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">This Month</a></li>
+            <li><a class="dropdown-item" href="#">This Quarter</a></li>
+            <li><a class="dropdown-item" href="#">This Year</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="chart-container">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 mb-4">
+    <div class="card h-100">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Traffic Sources</h5>
+      </div>
+      <div class="card-body">
+        <div class="chart-container">
+          <canvas id="trafficChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Recent Orders -->
+<div class="row">
+  <div class="col-12 mb-4">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Recent Orders</h5>
+        <a href="{% url 'orders' %}" class="btn btn-sm btn-link">View All</a>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Product</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in recent_orders %}
+              <tr>
+                <td>#{{ order.id }}</td>
+                <td>{{ order.customer_name }}</td>
+                <td>{{ order.product_name }}</td>
+                <td>{{ order.date|date:"M d, Y" }}</td>
+                <td>${{ order.amount|floatformat:2 }}</td>
+                <td><span class="badge bg-{{ order.status_class }}{% if order.status_class == 'warning' or order.status_class == 'info' %} text-dark{% endif %}">{{ order.status }}</span></td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-sm" type="button" id="dropdownAction{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownAction{{ order.id }}">
+                      <li><a class="dropdown-item" href="{% url 'order_detail' order.id %}">View</a></li>
+                      <li><a class="dropdown-item" href="{% url 'order_edit' order.id %}">Edit</a></li>
+                      <li><a class="dropdown-item text-danger" href="{% url 'order_delete' order.id %}">Delete</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="7" class="text-center">No orders found</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // You can add page-specific JavaScript here
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set active page for sidebar
+    const active_page = 'dashboard';
+  });
+</script>
+{% endblock %}

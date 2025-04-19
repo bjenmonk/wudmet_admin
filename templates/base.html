@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'components/head.html' %}
+</head>
+<body>
+  <!-- Sidebar -->
+  {% include 'components/sidebar.html' %}
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header/Navbar -->
+    {% include 'components/header.html' %}
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+      {% block content %}
+      <!-- Content will be inserted here -->
+      {% endblock %}
+    </div>
+    
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+  </main>
+
+  <!-- Main JS -->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

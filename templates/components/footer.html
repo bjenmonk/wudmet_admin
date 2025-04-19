@@ -1,0 +1,27 @@
+{% load static %}
+<!-- Footer CSS -->
+<link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+<!-- Footer -->
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-md-start">
+        <p>&copy; {% now "Y" %} WudMet Admin Dashboard. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-md-end d-flex justify-content-md-end align-items-center">
+        <div class="footer-links d-none d-md-block">
+          <a href="{% url 'privacy' %}">Privacy Policy</a>
+          <a href="{% url 'terms' %}">Terms &amp; Conditions</a>
+        </div>
+        <div class="social-icons ms-md-3">
+          <a href="{{ social_links.facebook }}" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="{{ social_links.twitter }}" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="{{ social_links.linkedin }}" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="{{ social_links.instagram }}" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer JavaScript -->
+<script src="{% static 'js/components/footer.js' %}"></script>

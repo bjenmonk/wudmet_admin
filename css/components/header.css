@@ -1,0 +1,66 @@
+/* Header/Navbar Styles */
+.navbar {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  z-index: 1020;
+}
+
+/* Breadcrumb styles */
+.breadcrumb {
+  background-color: transparent;
+  margin-bottom: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
+.breadcrumb-item a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #495057;
+}
+
+/* Navbar toolbar buttons alignment */
+.navbar .toolbar-btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.navbar .dropdown .nav-link {
+  padding: 0.375rem 0.5rem;
+}
+
+/* Dark mode styles for header */
+body.dark-mode .navbar {
+  background-color: #333 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .navbar .toolbar-btn,
+body.dark-mode .navbar .nav-link {
+  color: #f8f9fa;
+}
+
+body.dark-mode .breadcrumb-item a {
+  color: #adb5bd;
+}
+
+body.dark-mode .breadcrumb-item a:hover {
+  color: #ffffff;
+}
+
+body.dark-mode .breadcrumb-item.active {
+  color: #e9ecef;
+}
+
+body.dark-mode .breadcrumb-item + .breadcrumb-item::before {
+  color: #6c757d;
+}

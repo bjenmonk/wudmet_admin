@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <nav id="sidebar" class="sidebar">
+    <div class="position-sticky pt-3">
+      <div class="text-center mb-4">
+        <h5 class="py-2">Admin Dashboard</h5>
+      </div>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard">
+            <i class="fas fa-home"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Analytics">
+            <i class="fas fa-chart-bar"></i> <span>Analytics</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
+            <i class="fas fa-shopping-cart"></i> <span>Orders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Customers">
+            <i class="fas fa-users"></i> <span>Customers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Products">
+            <i class="fas fa-box"></i> <span>Products</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Settings">
+            <i class="fas fa-cog"></i> <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4">
+      <div class="container-fluid">
+        <!-- Sidebar toggle button for all screen sizes -->
+        <button id="globalSidebarToggle" class="toolbar-btn" type="button" aria-label="Toggle Sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Breadcrumb navigation -->
+        <nav aria-label="breadcrumb" class="d-none d-md-block ms-3">
+          <ol class="breadcrumb mb-0 py-1">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          </ol>
+        </nav>
+        
+        <div class="d-flex ms-auto align-items-center">
+          <!-- Commented out search functionality
+          <div class="input-group me-3">
+            <input type="text" class="form-control" placeholder="Search...">
+            <button class="btn btn-outline-secondary" type="button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          -->
+          
+          <!-- Toolbar Buttons in a single line -->
+          <div class="d-flex align-items-center">
+            <button id="fullscreenToggle" class="toolbar-btn" title="Toggle Fullscreen">
+              <i class="fas fa-expand"></i>
+            </button>
+            <button id="modeToggle" class="toolbar-btn" title="Toggle Dark/Light Mode">
+              <i class="fas fa-moon"></i>
+            </button>
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle fs-5"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+      <!-- Dashboard Content -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2">Dashboard</h1>
+        <div>
+          <button class="btn btn-sm btn-outline-secondary me-2">
+            <i class="fas fa-download"></i> Export
+          </button>
+          <button class="btn btn-sm btn-primary">
+            <i class="fas fa-plus"></i> Add New
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="row">
+        <div class="col-md-6 col-xl-3 mb-4">
+          <div class="card stat-card stat-card-primary h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted fw-normal mt-0">Total Revenue</h6>
+                  <h3>$21,456</h3>
+                </div>
+                <div class="stat-icon">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+              </div>
+              <p class="mb-0 text-muted">
+                <span class="text-success me-2"><i class="fas fa-arrow-up"></i> 17.8%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3 mb-4">
+          <div class="card stat-card stat-card-success h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted fw-normal mt-0">Total Orders</h6>
+                  <h3>1,753</h3>
+                </div>
+                <div class="stat-icon">
+                  <i class="fas fa-shopping-bag"></i>
+                </div>
+              </div>
+              <p class="mb-0 text-muted">
+                <span class="text-danger me-2"><i class="fas fa-arrow-down"></i> 4.3%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3 mb-4">
+          <div class="card stat-card stat-card-info h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted fw-normal mt-0">Total Customers</h6>
+                  <h3>945</h3>
+                </div>
+                <div class="stat-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+              <p class="mb-0 text-muted">
+                <span class="text-success me-2"><i class="fas fa-arrow-up"></i> 8.5%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3 mb-4">
+          <div class="card stat-card stat-card-warning h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="text-muted fw-normal mt-0">Total Products</h6>
+                  <h3>128</h3>
+                </div>
+                <div class="stat-icon">
+                  <i class="fas fa-box"></i>
+                </div>
+              </div>
+              <p class="mb-0 text-muted">
+                <span class="text-success me-2"><i class="fas fa-arrow-up"></i> 12.7%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+          <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Revenue Overview</h5>
+              <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  This Year
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Quarter</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="card-title mb-0">Traffic Sources</h5>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="trafficChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Orders -->
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Recent Orders</h5>
+              <a href="#" class="btn btn-sm btn-link">View All</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Order ID</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#ORD-0001</td>
+                      <td>John Smith</td>
+                      <td>Product A</td>
+                      <td>Apr 15, 2025</td>
+                      <td>$120.00</td>
+                      <td><span class="badge bg-success">Completed</span></td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn btn-sm" type="button" id="dropdownAction1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownAction1">
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-0002</td>
+                      <td>Emma Johnson</td>
+                      <td>Product B</td>
+                      <td>Apr 14, 2025</td>
+                      <td>$75.50</td>
+                      <td><span class="badge bg-warning text-dark">Pending</span></td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn btn-sm" type="button" id="dropdownAction2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownAction2">
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-0003</td>
+                      <td>Michael Brown</td>
+                      <td>Product C</td>
+                      <td>Apr 13, 2025</td>
+                      <td>$220.00</td>
+                      <td><span class="badge bg-success">Completed</span></td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn btn-sm" type="button" id="dropdownAction3" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownAction3">
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-0004</td>
+                      <td>Sarah Wilson</td>
+                      <td>Product D</td>
+                      <td>Apr 12, 2025</td>
+                      <td>$65.25</td>
+                      <td><span class="badge bg-danger">Cancelled</span></td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn btn-sm" type="button" id="dropdownAction4" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownAction4">
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-0005</td>
+                      <td>David Lee</td>
+                      <td>Product E</td>
+                      <td>Apr 11, 2025</td>
+                      <td>$175.75</td>
+                      <td><span class="badge bg-info text-dark">Shipped</span></td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn btn-sm" type="button" id="dropdownAction5" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownAction5">
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Edit</a></li>
+                            <li><a class="dropdown-item text-danger" href="#">Delete</a></li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Data Table -->
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Advanced Data Table</h5>
+              <div>
+                <button class="btn btn-sm btn-outline-secondary me-2">
+                  <i class="fas fa-file-export"></i> Export Data
+                </button>
+                <button class="btn btn-sm btn-primary">
+                  <i class="fas fa-filter"></i> Filter
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="advancedDataTable" class="display compact cell-border" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Stock</th>
+                      <th>Created Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>PRD-001</td>
+                      <td>Laptop Pro X15</td>
+                      <td>Electronics</td>
+                      <td>$1,299.99</td>
+                      <td>45</td>
+                      <td>2025-01-15</td>
+                      <td><span class="badge bg-success">Active</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PRD-002</td>
+                      <td>Wireless Headphones</td>
+                      <td>Audio</td>
+                      <td>$199.99</td>
+                      <td>120</td>
+                      <td>2025-01-18</td>
+                      <td><span class="badge bg-success">Active</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PRD-003</td>
+                      <td>Smartwatch Series 7</td>
+                      <td>Wearables</td>
+                      <td>$349.99</td>
+                      <td>78</td>
+                      <td>2025-01-22</td>
+                      <td><span class="badge bg-success">Active</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PRD-004</td>
+                      <td>Gaming Mouse</td>
+                      <td>Accessories</td>
+                      <td>$89.99</td>
+                      <td>230</td>
+                      <td>2025-01-30</td>
+                      <td><span class="badge bg-success">Active</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PRD-005</td>
+                      <td>4K Monitor 32"</td>
+                      <td>Electronics</td>
+                      <td>$499.99</td>
+                      <td>35</td>
+                      <td>2025-02-05</td>
+                      <td><span class="badge bg-warning text-dark">Low Stock</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PRD-006</td>
+                      <td>Bluetooth Speaker</td>
+                      <td>Audio</td>
+                      <td>$129.99</td>
+                      <td>0</td>
+                      <td>2025-02-10</td>
+                      <td><span class="badge bg-danger">Out of Stock</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PRD-007</td>
+                      <td>Mechanical Keyboard</td>
+                      <td>Accessories</td>
+                      <td>$149.99</td>
+                      <td>85</td>
+                      <td>2025-02-18</td>
+                      <td><span class="badge bg-success">Active</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PRD-008</td>
+                      <td>Wireless Charger</td>
+                      <td>Accessories</td>
+                      <td>$49.99</td>
+                      <td>150</td>
+                      <td>2025-03-01</td>
+                      <td><span class="badge bg-success">Active</span></td>
+                      <td>
+                        <div class="d-flex">
+                          <button class="btn btn-sm btn-info me-1" title="View"><i class="fas fa-eye"></i></button>
+                          <button class="btn btn-sm btn-warning me-1" title="Edit"><i class="fas fa-edit"></i></button>
+                          <button class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-md-start">
+            <p>&copy; 2025 WudMet Admin Dashboard. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end d-flex justify-content-md-end align-items-center">
+            <div class="footer-links d-none d-md-block">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+            <div class="social-icons ms-md-3">
+              <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Bootstrap JS with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery (required for DataTables) -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/dashboard.js"></script>
+  
+  <script>
+    // Initialize DataTable instance as a global variable
+    let dataTable;
+    
+    $(document).ready(function() {
+      // Initialize the DataTable with advanced features
+      dataTable = $('#advancedDataTable').DataTable({
+        responsive: true,
+        ordering: true,
+        searching: true,
+        paging: true,
+        pageLength: 10,
+        lengthMenu: [5, 10, 25, 50, 100],
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records..."
+        }
+      });
+      
+      // Handle dark mode toggle to redraw the table with proper styling
+      $('#modeToggle').on('click', function() {
+        // Allow time for dark mode toggle class to be applied
+        setTimeout(function() {
+          dataTable.draw();
+        }, 50);
+      });
+      
+      // Initialize Bootstrap tooltips for sidebar menu items
+      const tooltipTriggerList = document.querySelectorAll('#sidebar .nav-link[data-bs-toggle="tooltip"]');
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => {
+        return new bootstrap.Tooltip(tooltipTriggerEl, {
+          trigger: 'hover',
+          boundary: document.body
+        });
+      });
+      
+      // Function to enable/disable tooltips based on sidebar collapse state
+      function updateTooltipState() {
+        const isCollapsed = document.body.classList.contains('sidebar-collapsed');
+        tooltipTriggerList.forEach(el => {
+          const tooltip = bootstrap.Tooltip.getInstance(el);
+          if (tooltip) {
+            if (isCollapsed) {
+              tooltip.enable();
+            } else {
+              tooltip.disable();
+            }
+          }
+        });
+      }
+      
+      // Initial tooltip state based on sidebar state
+      updateTooltipState();
+      
+      // Update tooltips when sidebar is toggled
+      $('#globalSidebarToggle').on('click', function() {
+        // Allow time for sidebar-collapsed class to be toggled
+        setTimeout(updateTooltipState, 50);
+      });
+    });
+  </script>
+</body>
+</html>
