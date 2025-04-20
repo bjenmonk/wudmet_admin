@@ -1,4 +1,5 @@
 Wudmet Admin is a completely free Bootstrap-based admin template, designed with simplicity and versatility in mind. It leverages the default Bootstrap 5 styles, seamlessly combined with jQuery Datatables and other tools to create a robust framework for building admin panels and backend dashboards. We have included PHP and Django format also
+![](screenshot.gif)
 
 We’re excited to see the creative ways you put this exceptional template to use! Share your project, application, or service by tweeting at us @wudmet —we’d love to hear about it.
 
